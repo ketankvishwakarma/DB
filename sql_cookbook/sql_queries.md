@@ -126,3 +126,34 @@ WHERE
 |--------|------------|--------|
 |     40 | OPERATIONS | BOSTON|
 
+
+# Adding Joins to a Query Without Interfering with Other Joins
+
+You have a query that returns the results you want. You need additional information, but when trying to get it, you lose data from the original result set.For example, you want to return all employees, the location of the department in which they work, and the date they received a bonus.
+
+```sql
+select 
+  e.ename, d.loc, eb.received 
+from 
+  emp as e 
+  join dept as d on (e.deptno = d.deptno) 
+  left join emp_bonus as eb on (e.empno = eb.empno) 
+order by 2
+```
+
+ ename  |   loc    |  received  |
+--------|----------|------------|
+ JAMES  | CHICAGO  | 2005-03-14 |
+ WARD   | CHICAGO  |            |
+ TURNER | CHICAGO  |            |
+ ALLEN  | CHICAGO  |            |
+ MARTIN | CHICAGO  |            |
+ BLAKE  | CHICAGO  |            |
+ SMITH  | DALLAS   | 2005-03-14 |
+ JONES  | DALLAS   |            |
+ SCOTT  | DALLAS   | 2005-03-14 |
+ ADAMS  | DALLAS   |            |
+ FORD   | DALLAS   |            |
+ CLARK  | NEW YORK |            |
+ KING   | NEW YORK |            |
+ MILLER | NEW YORK |            |
